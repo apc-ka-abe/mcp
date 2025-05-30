@@ -1,0 +1,5 @@
+databricks-labs-mcp @ git+https://github.com/databrickslabs/mcp.git
+pydantic==2.11
+fastapi==0.103.0
+uvicorn[standard]==0.23.2
+python-dotenv

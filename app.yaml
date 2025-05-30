@@ -1,0 +1,27 @@
+schema_version: 1
+
+name: mcp-server
+description: "MCP server running on Databricks Apps with Unity Catalog support"
+
+command: [
+  "python",
+  "src/databricks/labs/mcp/servers/unity_catalog/minimal_app.py"
+  # "src/databricks/labs/mcp/servers/unity_catalog/app.py"
+]
+
+env:
+  - name: "SCHEMA_FULL_NAME"
+    value: "ka_abe.sample"
+  - name: "SERVING_ENDPOINT"
+    valueFrom: "serving-endpoint"  # Apps の Secrets リソース名と一致させること
+  - name: "DATABRICKS_HOST"
+    valueFrom: "databricks-host"
+  - name: "GENIE_SPACE_IDS"
+    value: '["customer_analysis"]'
+resources:
+  cluster:
+    runtime: "14.3"
+    num_workers: 1
+
+dependencies:
+  - requirements.txt
